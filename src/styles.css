@@ -1,66 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,900&display=swap");
-
-:root {
-  --color-accent: #ef0741;
-  --color-over-accent: #ffffff;
-  --color-headers: #002a49;
-  --color-backdrop: #ededed;
-}
-
+body,
 html {
-  background-color: var(--color-backdrop);
-}
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  min-height: calc(100vh);
-  margin: 0;
-  padding: 0;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-div {
-  margin: 0;
-  padding: 0;
-}
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-.text-center {
-  text-align: center;
-}
-#page-identity {
-  line-height: 44px;
-  background-color: var(--color-accent);
-  color: var(--color-over-accent);
-  text-align: center;
-}
-.text-logo {
-  font-weight: lighter;
-  font-size: 22px;
-}
-#page-content {
-  padding: 65px 0;
-}
-.main-slogan {
-  color: var(--color-accent);
-  font-weight: 500;
-  line-height: 35px;
-  font-size: 26px;
-  letter-spacing: -0.27px;
+  height: 100%;
 }
 
-.main-title {
-  font-weight: 900;
-  font-size: 89px;
-  text-transform: uppercase;
+.bg {
+  /* The image used */
+  background-image: url("./assets/coming_soon.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
