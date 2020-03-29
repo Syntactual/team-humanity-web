@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+@import 'src/app/theme/theme.scss';
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.humanitytheme {
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($theme);
+}
+
+// This is just to make the dashboard 100%.
+body, html {
+  height: 100%;
+  margin: 0;
+}
