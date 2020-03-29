@@ -1,0 +1,13 @@
+overwrite: true
+schema: 'https://us-central1-teamhumanity-test.cloudfunctions.net/function-1'
+documents: 'src/**/*.graphql'
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
+      - 'fragment-matcher'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'
