@@ -18,6 +18,9 @@ import { HeaderComponent } from './pages/landing/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 const appRoutes: Routes = [
+  // {
+  //   path: 'dashboard', component: DashboardComponent
+  // },
   {
     path: 'dashboard',
     component: DashboardComponent
