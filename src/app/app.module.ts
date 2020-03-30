@@ -16,13 +16,14 @@ import { HeaderComponent } from './pages/landing/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 const appRoutes: Routes = [
+  // {
+  //   path: 'dashboard', component: DashboardComponent
+  // },
   {
-    path: 'dashboard', component: DashboardComponent
+    path: "",
+    component: LandingComponent
   },
-  {
-    path: '', component: LandingComponent, pathMatch: 'full'
-  },
-  { path: '**', component: AppComponent }
+  { path: "**", redirectTo: "" }
 ];
 @NgModule({
   declarations: [
@@ -56,4 +57,4 @@ const appRoutes: Routes = [
     MatDialogModule
   ]
 })
-export class AppModule { }
+export class AppModule {}
