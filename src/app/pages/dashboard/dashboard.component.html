@@ -5,21 +5,10 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <main class="main">
-    <mat-grid-list gutterSize="40px" rowHeight="1:1.4" [cols]="breakpoint"
+    <mat-grid-list class="dashboard-card-list" gutterSize="40px" rowHeight="1:1.4" [cols]="breakpoint"
         (window:resize)="onResize($event)" class="app-cards">
-        
-        <mat-grid-tile>
-            <app-card></app-card>
+            <mat-grid-tile *ngFor="let card of mockCards">
+                <app-card [data]="card"></app-card>
         </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        
     </mat-grid-list>
 </main>
