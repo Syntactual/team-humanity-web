@@ -14,8 +14,13 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CardComponent } from './shared/components/card/card.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './pages/landing/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const appRoutes: Routes = [
+  // {
+  //   path: 'dashboard', component: DashboardComponent
+  // },
   {
     path: 'dashboard',
     component: DashboardComponent
@@ -32,7 +37,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -56,7 +62,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule
   ]
 })
 export class AppModule {}
