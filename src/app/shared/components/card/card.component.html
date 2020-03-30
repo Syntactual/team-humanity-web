@@ -1,19 +1,17 @@
-<div>
-    <button mat-fab mat-raised-button color="primary" matBadgePosition="before" matBadgeColor="accent"
-        style="margin-left: 240px;margin-top: 0px;position:absolute;z-index: 100;">$
+<div class="card">
+    <button mat-fab mat-raised-button color="primary" matBadgePosition="before" matBadgeColor="accent" class="fab-button">$
     </button>
-    <div style="width:100%;padding-top: 20px;margin-right: 20px;padding-right: 0px;">
-        <mat-card class="example-card" style="margin-right: 10px;min-width: 200px;max-width: 250px;">
+    <div class="card-container">
+        <mat-card class="matCard">
             <img mat-card-image
-                src="https://cdn2.creativecirclemedia.com/neni/original/20190807-104829-PEOPLESMULDERS-T5_28987.jpg"
-                alt="Photo of a Shiba Inu">
+                src={{cardData.imageUrl}}
+                alt="Photo of a Shiba Inu"/>
             <mat-card-content>
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                    Japan.
-                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-                    originally
-                    bred for hunting.
+                <p class="name"style="">
+                    {{cardData.firstName}}&nbsp;{{cardData.lastName}}
+                </p>
+                <p style="text-align: center;font-size: 1.5vh;font-weight: 300;color:#002A49">
+                    {{cardData.message}}
                 </p>
             </mat-card-content>
             <mat-card-actions style="text-align: center;">

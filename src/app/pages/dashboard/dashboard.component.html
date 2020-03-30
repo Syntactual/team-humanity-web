@@ -1,25 +1,9 @@
-<mat-toolbar color="primary" role="heading">
-    <mat-toolbar-row class="toolbar">
-        <span style="font-weight: 100;font-size: 40px;letter-spacing: 7px;" class="heading">TEAM<b>HUMANITY</b></span>
-        <button class="button" mat-button mat-flat-button color="accent" style="font-size: 60px;color: #41696c;cursor:pointer">+</button>
-    </mat-toolbar-row>
-</mat-toolbar>
+<app-header></app-header>
 <main style="margin:50px">
-    <mat-grid-list style="padding-right:10px;padding-right:10px" gutterSize="40px" rowHeight="1:1.4" [cols]="breakpoint"
+    <mat-grid-list class="dashboard-card-list" gutterSize="40px" rowHeight="1:1.4" [cols]="breakpoint"
         (window:resize)="onResize($event)">
-        
-        <mat-grid-tile>
-            <app-card></app-card>
+        <mat-grid-tile *ngFor="let card of mockCards">
+            <app-card [data]="card"></app-card>
         </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <app-card></app-card>
-        </mat-grid-tile>
-        
     </mat-grid-list>
 </main>

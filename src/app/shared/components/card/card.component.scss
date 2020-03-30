@@ -1,0 +1,33 @@
+.card{
+    .fab-button{
+        margin-left: 240px;
+        margin-top: 0px;
+        position:absolute;
+        z-index: 100;
+    }
+    .card-container{
+        width:100%; 
+        height:318px;
+        padding-top: 20px;
+        margin-right: 20px;
+        padding-right: 0px;
+
+        .matCard{
+            margin-right: 10px;
+            min-width: 200px;
+            max-width: 250px;
+            img{
+                height:188px;
+                width:282px;
+            }
+            mat-card-content{
+                .name{
+                    text-align:center;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color:#002A49
+                }
+            }
+        }
+    }
+}

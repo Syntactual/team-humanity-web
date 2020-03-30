@@ -12,7 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CardComponent } from './shared/components/card/card.component';
-
+import { HeaderComponent } from './pages/landing/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const appRoutes: Routes = [
   {
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule
   ]
 })
 export class AppModule { }
