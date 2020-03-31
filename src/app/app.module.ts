@@ -16,11 +16,9 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './pages/landing/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {SetupComponent} from './components/setup/setup.component';
 
 const appRoutes: Routes = [
-  // {
-  //   path: 'dashboard', component: DashboardComponent
-  // },
   {
     path: 'dashboard',
     component: DashboardComponent
@@ -38,7 +36,8 @@ const appRoutes: Routes = [
     LandingComponent,
     DashboardComponent,
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
+    SetupComponent
   ],
   imports: [
     RouterModule.forRoot(

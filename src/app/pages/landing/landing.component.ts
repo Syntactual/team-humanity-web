@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+  togglePopup = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleModal() {
+    this.togglePopup = !this.togglePopup;
   }
 
 }
