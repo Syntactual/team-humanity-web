@@ -1,3 +1,5 @@
+@import "../../../assets/stylesheets/constants.scss";
+
 #setup-container {
   display: flex;
   flex-direction: row;
@@ -26,7 +28,7 @@
   }
 
   #setup-form-container {
-    background-color: #EDEDED;
+    background-color: $grey;
     width: 45%;
     padding: 15vh 10vh;
     text-align: center;
@@ -50,8 +52,8 @@
 
     button:not([disabled]) {
       text-transform: uppercase;
-      background-color: #43696C;
-      color: #EDEDED;
+      background-color: $sea-green;
+      color: $grey;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import "../../../assets/stylesheets/constants";
+
 #landing-container {
   background-image: url('./../../../assets/people_background.jpg');
   background-position: center;
@@ -11,7 +13,7 @@
   justify-content: center;
   flex-direction: column;
 
-  color: #EDEDED;
+  color: $grey;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 
@@ -27,9 +29,9 @@
   }
 
   button {
-    background-color: #EDEDED;
+    background-color: $grey;
     text-transform: uppercase;
-    color: #43696C;
+    color: $sea-green;
   }
 
   p {
@@ -38,7 +40,7 @@
   }
 
   a{
-    color: #43696C;
+    color: $sea-green;
   }
 
   #open-button{
