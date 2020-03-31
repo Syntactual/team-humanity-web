@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {UserRegistrationData} from '../../models/UserRegistrationData';
 import {MatDialogRef} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-setup',
@@ -20,7 +21,9 @@ export class SetupComponent {
     picture: null
   } as UserRegistrationData;
 
-  constructor(public dialogRef: MatDialogRef<SetupComponent>) {
+  constructor(private dialogRef: MatDialogRef<SetupComponent>,
+              private router: Router,
+  ) {
   }
 
   handleFileInput(files: FileList) {
@@ -34,9 +37,14 @@ export class SetupComponent {
     };
   }
 
+  hasConfirmedPassword() {
+    return this.user.password === this.user.confirmPassword;
+  }
+
   closeModal() {
-    if (this.user.password === this.user.confirmPassword) {
+    if (this.hasConfirmedPassword()) {
       this.dialogRef.close(this.user);
+      this.router.navigate(['/dashboard']);
     } else {
       alert('passwords don\'t match');
     }

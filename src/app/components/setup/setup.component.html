@@ -52,7 +52,7 @@
                placeholder="Confirm Password">
       </mat-form-field>
 
-      <button mat-button mat-raised-button isRoundButton="true" type="submit" [disabled]="!f.valid">Sign Up</button>
+      <button mat-button mat-raised-button isRoundButton="true" type="submit" [disabled]="!f.valid && !hasConfirmedPassword()">Sign Up</button>
     </form>
 
   </div>
