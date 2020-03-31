@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '45vw';
+    dialogConfig.width = '50%';
     dialogConfig.panelClass = 'signup-dialog';
 
     this.dialog

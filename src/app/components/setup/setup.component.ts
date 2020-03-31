@@ -14,7 +14,8 @@ export class SetupComponent {
     email: '',
     username: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    picture: null
   } as UserRegistrationData;
 
   constructor(public dialogRef: MatDialogRef<SetupComponent>) {

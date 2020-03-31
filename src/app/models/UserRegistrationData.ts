@@ -5,4 +5,5 @@ export interface UserRegistrationData {
   username: string;
   password: string;
   confirmPassword: string;
+  picture: File | null;
 }

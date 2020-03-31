@@ -1,5 +1,12 @@
 <div id="setup-container">
   <div id="setup-border">
+    <img src="./../../../assets/logo/grey_icon.png" for="picUploader">
+    <input
+      id="picUploader"
+      type="file"
+      accept="image/svg+xml, image/jpeg, image/png"
+      [(ngModel)]="user.picture"
+    >
   </div>
 
   <div id="setup-form-container">
