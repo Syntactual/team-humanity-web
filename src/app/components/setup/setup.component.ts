@@ -8,6 +8,8 @@ import {MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent {
+  imgURL: string | ArrayBuffer;
+
   user: UserRegistrationData = {
     firstName: '',
     lastName: '',
@@ -19,6 +21,17 @@ export class SetupComponent {
   } as UserRegistrationData;
 
   constructor(public dialogRef: MatDialogRef<SetupComponent>) {
+  }
+
+  handleFileInput(files: FileList) {
+    if (files.length === 0) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (e) => {
+      this.imgURL = reader.result;
+    };
   }
 
   closeModal() {

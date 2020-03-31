@@ -1,16 +1,28 @@
 <div id="setup-container">
   <div id="setup-border">
-    <img src="./../../../assets/logo/grey_icon.png" for="picUploader">
+    <ng-container *ngIf="imgURL; else imagePicker">
+      <img
+        id="selected-image"
+        [src]="imgURL"
+        (click)="picUploader.click()">
+    </ng-container>
+    <ng-template #imagePicker>
+      <img
+        id="upload-image"
+        src="./../../../assets/logo/grey_icon.png"
+        (click)="picUploader.click()">
+    </ng-template>
     <input
-      id="picUploader"
+      #picUploader
       type="file"
-      accept="image/svg+xml, image/jpeg, image/png"
+      accept='image/*'
       [(ngModel)]="user.picture"
+      (change)="handleFileInput($event.target.files)"
     >
   </div>
 
   <div id="setup-form-container">
-      <img src="../../../assets/logo/logo_green_full.png">
+    <img src="../../../assets/logo/logo_green_full.png">
 
     <form #f="ngForm" (ngSubmit)="closeModal()">
       <div id="name-row">
@@ -23,21 +35,22 @@
         </mat-form-field>
       </div>
 
-        <mat-form-field>
-          <input matInput type="email" [(ngModel)]="user.email" name="email" placeholder="Email">
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" [(ngModel)]="user.email" name="email" required placeholder="Email">
+      </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="text" [(ngModel)]="user.username" name="username" placeholder="Username">
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="user.username" name="username" placeholder="Username">
+      </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="password" [(ngModel)]="user.password" name="password" required placeholder="Password">
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" [(ngModel)]="user.password" name="password" required placeholder="Password">
+      </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" required placeholder="Confirm Password">
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" required
+               placeholder="Confirm Password">
+      </mat-form-field>
 
       <button mat-button mat-raised-button isRoundButton="true" type="submit" [disabled]="!f.valid">Sign Up</button>
     </form>
