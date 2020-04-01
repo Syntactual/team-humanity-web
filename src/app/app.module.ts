@@ -16,11 +16,12 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './pages/landing/header/header.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {SetupComponent} from './components/setup/setup.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 const appRoutes: Routes = [
-  // {
-  //   path: 'dashboard', component: DashboardComponent
-  // },
   {
     path: 'dashboard',
     component: DashboardComponent
@@ -38,12 +39,13 @@ const appRoutes: Routes = [
     LandingComponent,
     DashboardComponent,
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
+    SetupComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      {enableTracing: true} // <-- debugging purposes only
     ),
     BrowserModule,
     BrowserAnimationsModule,
@@ -51,9 +53,12 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+    MatInputModule,
     MatBadgeModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -64,6 +69,7 @@ const appRoutes: Routes = [
     MatGridListModule,
     MatBadgeModule,
     MatDialogModule
-  ]
+  ],
+  entryComponents: [SetupComponent]
 })
 export class AppModule {}
