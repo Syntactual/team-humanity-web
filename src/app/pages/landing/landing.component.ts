@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {SetupComponent} from '../../components/setup/setup.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SetupComponent } from '../../components/setup/setup.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -8,12 +9,9 @@ import {SetupComponent} from '../../components/setup/setup.component';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  constructor(private dialog: MatDialog) {
-  }
+  constructor(private dialog: MatDialog, public auth: AuthService) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   openModal() {
     const dialogConfig = new MatDialogConfig();
@@ -25,11 +23,10 @@ export class LandingComponent implements OnInit {
 
     this.dialog
       .open(SetupComponent, dialogConfig)
-      .afterClosed().subscribe(userRegistationData => {
-      console.log('successfully registered');
-      console.log(userRegistationData);
-    });
+      .afterClosed()
+      .subscribe(userRegistationData => {
+        console.log('successfully registered');
+        console.log(userRegistationData);
+      });
   }
-
-
 }
