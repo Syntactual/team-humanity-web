@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DashboardComponent implements OnInit {
   user$: Observable<User>;
   mockCards: Card[];
-  breakpoint: number = 4;
+  breakpoint: number;
   constructor(private userGQL: UserGQL, public auth: AuthService) {
     this.mockCards = [
       {
