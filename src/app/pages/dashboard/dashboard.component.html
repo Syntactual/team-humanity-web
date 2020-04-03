@@ -1,14 +1,28 @@
 <mat-toolbar color="primary" role="heading">
-    <mat-toolbar-row class="toolbar">
-        <span class="heading">TEAM<b>HUMANITY</b></span>
-        <button class="button" mat-button mat-flat-button color="accent" >+</button>
-    </mat-toolbar-row>
+  <mat-toolbar-row class="toolbar">
+    <span class="heading">TEAM<b>HUMANITY</b></span>
+    <button
+      mat-button
+      mat-raised-button
+      isRoundButton="true"
+      (click)="auth.logout()"
+    >
+      Logout
+    </button>
+    <button class="button" mat-button mat-flat-button color="accent">+</button>
+  </mat-toolbar-row>
 </mat-toolbar>
 <main class="main">
-    <mat-grid-list class="dashboard-card-list" gutterSize="40px" rowHeight="1:1.4" [cols]="breakpoint"
-        (window:resize)="onResize($event)" class="app-cards">
-            <mat-grid-tile *ngFor="let card of mockCards">
-                <app-card [data]="card"></app-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list
+    class="dashboard-card-list"
+    gutterSize="40px"
+    rowHeight="1:1.4"
+    [cols]="breakpoint"
+    (window:resize)="onResize($event)"
+    class="app-cards"
+  >
+    <mat-grid-tile *ngFor="let card of mockCards">
+      <app-card [data]="card"></app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </main>
