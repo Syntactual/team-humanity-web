@@ -24,18 +24,18 @@ import { CreateNeedComponent } from './pages/create-need/create-need.component';
 const appRoutes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
   },
   {
     path: 'create-need',
-    component: CreateNeedComponent
+    component: CreateNeedComponent,
   },
   {
     path: '',
     component: LandingComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
-  { path: '**', redirectTo: '/' }
+  { path: '**', redirectTo: '/' },
 ];
 @NgModule({
   declarations: [
@@ -45,12 +45,12 @@ const appRoutes: Routes = [
     CardComponent,
     HeaderComponent,
     SetupComponent,
-    CreateNeedComponent
+    CreateNeedComponent,
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true }, // <-- debugging purposes only
     ),
     BrowserModule,
     BrowserAnimationsModule,
@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatFormFieldModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -73,10 +73,11 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+
     MatFormFieldModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
-  entryComponents: [SetupComponent]
+  entryComponents: [SetupComponent],
 })
 export class AppModule {}
