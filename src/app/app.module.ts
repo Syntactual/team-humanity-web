@@ -10,12 +10,20 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { CardComponent } from "./shared/components/card/card.component";
+import { CreateNeedComponent } from "./pages/create-need/create-need.component";
 
 const appRoutes: Routes = [
-  // {
-  //   path: 'dashboard', component: DashboardComponent
-  // },
+  {
+    path: "dashboard",
+    component: DashboardComponent
+  },
+  {
+    path: "create-need",
+    component: CreateNeedComponent
+  },
   {
     path: "",
     component: LandingComponent
@@ -27,7 +35,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     DashboardComponent,
-    CardComponent
+    CardComponent,
+    CreateNeedComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -40,7 +49,9 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -49,7 +60,9 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class AppModule {}
