@@ -9,6 +9,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Upload: any;
 };
 
 
@@ -22,15 +23,43 @@ export type Address = {
   stateAbbr?: Maybe<Scalars['String']>;
 };
 
+export type AddressInput = {
+  streetAddress: Scalars['String'];
+  aptSuit?: Maybe<Scalars['String']>;
+  state: Scalars['String'];
+  zipCode: Scalars['Int'];
+  stateAbbr?: Maybe<Scalars['String']>;
+};
+
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
 }
 
+export type Mutation = {
+   __typename?: 'Mutation';
+  createProfile: User;
+};
+
+
+export type MutationCreateProfileArgs = {
+  user: UserInput;
+};
+
+export type ProfilePicture = {
+   __typename?: 'ProfilePicture';
+  fileName: Scalars['String'];
+};
+
+export type ProfilePictureInput = {
+  fileName: Scalars['String'];
+};
+
 export type Query = {
    __typename?: 'Query';
   user?: Maybe<User>;
 };
+
 
 export type User = {
    __typename?: 'User';
@@ -41,6 +70,18 @@ export type User = {
   email: Scalars['String'];
   about?: Maybe<Scalars['String']>;
   address?: Maybe<Address>;
+  profilePicture: ProfilePicture;
+};
+
+export type UserInput = {
+  id: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  age?: Maybe<Scalars['Int']>;
+  about: Scalars['String'];
+  email: Scalars['String'];
+  profilePicture: ProfilePictureInput;
+  address: AddressInput;
 };
 
 export type UserQueryVariables = {};
@@ -56,6 +97,26 @@ export type UserQuery = (
       & Pick<Address, 'streetAddress'>
     )> }
   )> }
+);
+
+export type CreateProfileMutationVariables = {
+  user: UserInput;
+};
+
+
+export type CreateProfileMutation = (
+  { __typename?: 'Mutation' }
+  & { createProfile: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'age' | 'about'>
+    & { profilePicture: (
+      { __typename?: 'ProfilePicture' }
+      & Pick<ProfilePicture, 'fileName'>
+    ), address?: Maybe<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'streetAddress' | 'aptSuit' | 'state' | 'zipCode' | 'stateAbbr'>
+    )> }
+  ) }
 );
 
 export const UserDocument = gql`
@@ -78,6 +139,35 @@ export const UserDocument = gql`
   })
   export class UserGQL extends Apollo.Query<UserQuery, UserQueryVariables> {
     document = UserDocument;
+    
+  }
+export const CreateProfileDocument = gql`
+    mutation createProfile($user: UserInput!) {
+  createProfile(user: $user) {
+    id
+    firstName
+    lastName
+    age
+    about
+    profilePicture {
+      fileName
+    }
+    address {
+      streetAddress
+      aptSuit
+      state
+      zipCode
+      stateAbbr
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateProfileGQL extends Apollo.Mutation<CreateProfileMutation, CreateProfileMutationVariables> {
+    document = CreateProfileDocument;
     
   }
 

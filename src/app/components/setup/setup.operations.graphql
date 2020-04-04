@@ -1,0 +1,19 @@
+mutation createProfile($user: UserInput!) {
+  createProfile(user: $user) {
+    id
+    firstName
+    lastName
+    age
+    about
+    profilePicture {
+      fileName
+    }
+    address {
+      streetAddress
+      aptSuit
+      state
+      zipCode
+      stateAbbr
+    }
+  }
+}
