@@ -73,10 +73,7 @@ export class CreateProfileComponent implements OnInit {
             Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/),
           ],
         ],
-        confirmPassword: [
-          '',
-          [Validators.required, Validators.pattern(this.user.password)],
-        ],
+        confirmPassword: ['', Validators.required],
       },
       { validator: this.checkPasswords },
     );
