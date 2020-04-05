@@ -8,7 +8,8 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserRegistrationData } from '../../models/UserRegistrationData';
 import { Address } from '../../models/Address';
-import { State } from '../../models/State';
+import { StatesComponent } from './states.component';
+import { MyErrorStateMatcher } from './error-state-matcher.component';
 
 @Component({
   selector: 'app-create-profile',
@@ -25,6 +26,8 @@ export class CreateProfileComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(private _formBuilder: FormBuilder) {}
   imgURL: string | ArrayBuffer;
@@ -47,249 +50,36 @@ export class CreateProfileComponent implements OnInit {
     stateAbbr: '',
   } as Address;
 
-  states: State[] = [
-    {
-      viewValue: 'Alabama',
-      value: 'AL',
-    },
-    {
-      viewValue: 'Alaska',
-      value: 'AK',
-    },
-    {
-      viewValue: 'American Samoa',
-      value: 'AS',
-    },
-    {
-      viewValue: 'Arizona',
-      value: 'AZ',
-    },
-    {
-      viewValue: 'Arkansas',
-      value: 'AR',
-    },
-    {
-      viewValue: 'California',
-      value: 'CA',
-    },
-    {
-      viewValue: 'Colorado',
-      value: 'CO',
-    },
-    {
-      viewValue: 'Connecticut',
-      value: 'CT',
-    },
-    {
-      viewValue: 'Delaware',
-      value: 'DE',
-    },
-    {
-      viewValue: 'District Of Columbia',
-      value: 'DC',
-    },
-    {
-      viewValue: 'Federated States Of Micronesia',
-      value: 'FM',
-    },
-    {
-      viewValue: 'Florida',
-      value: 'FL',
-    },
-    {
-      viewValue: 'Georgia',
-      value: 'GA',
-    },
-    {
-      viewValue: 'Guam',
-      value: 'GU',
-    },
-    {
-      viewValue: 'Hawaii',
-      value: 'HI',
-    },
-    {
-      viewValue: 'Idaho',
-      value: 'ID',
-    },
-    {
-      viewValue: 'Illinois',
-      value: 'IL',
-    },
-    {
-      viewValue: 'Indiana',
-      value: 'IN',
-    },
-    {
-      viewValue: 'Iowa',
-      value: 'IA',
-    },
-    {
-      viewValue: 'Kansas',
-      value: 'KS',
-    },
-    {
-      viewValue: 'Kentucky',
-      value: 'KY',
-    },
-    {
-      viewValue: 'Louisiana',
-      value: 'LA',
-    },
-    {
-      viewValue: 'Maine',
-      value: 'ME',
-    },
-    {
-      viewValue: 'Marshall Islands',
-      value: 'MH',
-    },
-    {
-      viewValue: 'Maryland',
-      value: 'MD',
-    },
-    {
-      viewValue: 'Massachusetts',
-      value: 'MA',
-    },
-    {
-      viewValue: 'Michigan',
-      value: 'MI',
-    },
-    {
-      viewValue: 'Minnesota',
-      value: 'MN',
-    },
-    {
-      viewValue: 'Mississippi',
-      value: 'MS',
-    },
-    {
-      viewValue: 'Missouri',
-      value: 'MO',
-    },
-    {
-      viewValue: 'Montana',
-      value: 'MT',
-    },
-    {
-      viewValue: 'Nebraska',
-      value: 'NE',
-    },
-    {
-      viewValue: 'Nevada',
-      value: 'NV',
-    },
-    {
-      viewValue: 'New Hampshire',
-      value: 'NH',
-    },
-    {
-      viewValue: 'New Jersey',
-      value: 'NJ',
-    },
-    {
-      viewValue: 'New Mexico',
-      value: 'NM',
-    },
-    {
-      viewValue: 'New York',
-      value: 'NY',
-    },
-    {
-      viewValue: 'North Carolina',
-      value: 'NC',
-    },
-    {
-      viewValue: 'North Dakota',
-      value: 'ND',
-    },
-    {
-      viewValue: 'Northern Mariana Islands',
-      value: 'MP',
-    },
-    {
-      viewValue: 'Ohio',
-      value: 'OH',
-    },
-    {
-      viewValue: 'Oklahoma',
-      value: 'OK',
-    },
-    {
-      viewValue: 'Oregon',
-      value: 'OR',
-    },
-    {
-      viewValue: 'Palau',
-      value: 'PW',
-    },
-    {
-      viewValue: 'Pennsylvania',
-      value: 'PA',
-    },
-    {
-      viewValue: 'Puerto Rico',
-      value: 'PR',
-    },
-    {
-      viewValue: 'Rhode Island',
-      value: 'RI',
-    },
-    {
-      viewValue: 'South Carolina',
-      value: 'SC',
-    },
-    {
-      viewValue: 'South Dakota',
-      value: 'SD',
-    },
-    {
-      viewValue: 'Tennessee',
-      value: 'TN',
-    },
-    {
-      viewValue: 'Texas',
-      value: 'TX',
-    },
-    {
-      viewValue: 'Utah',
-      value: 'UT',
-    },
-    {
-      viewValue: 'Vermont',
-      value: 'VT',
-    },
-    {
-      viewValue: 'Virgin Islands',
-      value: 'VI',
-    },
-    {
-      viewValue: 'Virginia',
-      value: 'VA',
-    },
-    {
-      viewValue: 'Washington',
-      value: 'WA',
-    },
-    {
-      viewValue: 'West Virginia',
-      value: 'WV',
-    },
-    {
-      viewValue: 'Wisconsin',
-      value: 'WI',
-    },
-    {
-      viewValue: 'Wyoming',
-      value: 'WY',
-    },
-  ];
+  states = new StatesComponent();
+
+  checkPasswords(group: FormGroup) {
+    console.log(group);
+    let pass = group.get('password').value;
+    let confirmPass = group.get('confirmPassword').value;
+    return pass === confirmPass ? null : { notSame: true };
+  }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
+    this.firstFormGroup = this._formBuilder.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        emailFormControl: ['', [Validators.required, Validators.email]],
+        username: ['', Validators.required],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/),
+          ],
+        ],
+        confirmPassword: [
+          '',
+          [Validators.required, Validators.pattern(this.user.password)],
+        ],
+      },
+      { validator: this.checkPasswords },
+    );
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
     });

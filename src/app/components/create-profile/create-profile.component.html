@@ -14,19 +14,25 @@
           <input
             matInput
             type="text"
-            formControlName="firstCtrl"
+            formControlName="firstName"
             name="firstName"
             placeholder="First Name"
           />
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="input">
           <input
             matInput
             type="text"
-            formControlName="firstCtrl"
+            formControlName="lastName"
             name="lastName"
             placeholder="Last Name"
           />
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -34,19 +40,25 @@
           <input
             matInput
             type="text"
-            formControlName="firstCtrl"
+            formControlName="emailFormControl"
             name="email"
             placeholder="Email Address"
           />
+          <mat-error>
+            Please enter a valid email address.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="input">
           <input
             matInput
             type="text"
-            formControlName="firstCtrl"
+            formControlName="username"
             name="username"
             placeholder="Username"
           />
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -54,19 +66,26 @@
           <input
             matInput
             type="password"
-            formControlName="firstCtrl"
+            formControlName="password"
             name="password"
             placeholder="Password"
           />
+          <mat-error>
+            Must have 6 characters with at least 1 number.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="input">
           <input
             matInput
             type="password"
-            formControlName="firstCtrl"
+            formControlName="confirmPassword"
             name="confirmPassword"
             placeholder="Confirm Password"
+            [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="firstFormGroup.hasError('notSame')">
+            Passwords do not match
+          </mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -114,7 +133,7 @@
           <mat-label>State</mat-label>
           <select matNativeControl name="state" formControlName="secondCtrl">
             <option value="" selected></option>
-            <option *ngFor="let state of states" [value]="state.value">
+            <option *ngFor="let state of states.states" [value]="state.value">
               {{ state.viewValue }}
             </option>
           </select>
