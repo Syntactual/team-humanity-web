@@ -78,7 +78,11 @@ export class CreateProfileComponent implements OnInit {
       { validator: this.checkPasswords },
     );
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
+      streetAddr: ['', Validators.required],
+      apartSuit: [''],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required],

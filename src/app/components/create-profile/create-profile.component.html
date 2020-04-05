@@ -102,19 +102,21 @@
           <input
             matInput
             type="text"
-            formControlName="secondCtrl"
+            formControlName="streetAddr"
             placeholder="Ex. 1 Main Street"
             required
           />
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="input">
           <mat-label>Apartment/Suite Number</mat-label>
           <input
             matInput
             type="text"
-            formControlName="secondCtrl"
+            formControlName="apartSuit"
             placeholder="Ex. Apartment 724"
-            required
           />
         </mat-form-field>
       </div>
@@ -124,19 +126,25 @@
           <input
             matInput
             type="text"
-            formControlName="secondCtrl"
+            formControlName="city"
             placeholder="Ex. New York City"
             required
           />
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="input">
           <mat-label>State</mat-label>
-          <select matNativeControl name="state" formControlName="secondCtrl">
+          <select matNativeControl name="state" formControlName="state">
             <option value="" selected></option>
             <option *ngFor="let state of states.states" [value]="state.value">
               {{ state.viewValue }}
             </option>
           </select>
+          <mat-error>
+            Required.
+          </mat-error>
         </mat-form-field>
       </div>
       <mat-form-field class="input">
@@ -144,10 +152,13 @@
         <input
           matInput
           type="text"
-          formControlName="secondCtrl"
+          formControlName="zipCode"
           placeholder="Ex. 30064"
           required
         />
+        <mat-error>
+          Please enter a valid zip code.
+        </mat-error>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
