@@ -1,0 +1,164 @@
+<mat-toolbar color="primary" role="heading">
+  <mat-toolbar-row class="toolbar">
+    <span class="heading">TEAM<b>HUMANITY</b></span>
+    <button class="button" mat-button mat-flat-button color="accent">+</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div id="name-row">
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="firstCtrl"
+            name="firstName"
+            placeholder="First Name"
+          />
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="firstCtrl"
+            name="lastName"
+            placeholder="Last Name"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="firstCtrl"
+            name="email"
+            placeholder="Email Address"
+          />
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="firstCtrl"
+            name="username"
+            placeholder="Username"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="password"
+            formControlName="firstCtrl"
+            name="password"
+            placeholder="Password"
+          />
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="password"
+            formControlName="firstCtrl"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <div>
+        <mat-form-field class="input">
+          <mat-label>Street Address</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="secondCtrl"
+            placeholder="Ex. 1 Main Street"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="input">
+          <mat-label>Apartment/Suite Number</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="secondCtrl"
+            placeholder="Ex. Apartment 724"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="secondCtrl"
+            placeholder="Ex. New York City"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="input">
+          <mat-label>State</mat-label>
+          <select matNativeControl name="state" formControlName="secondCtrl">
+            <option value="" selected></option>
+            <option *ngFor="let state of states" [value]="state.value">
+              {{ state.viewValue }}
+            </option>
+          </select>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="input">
+        <mat-label>Zip Code</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="secondCtrl"
+          placeholder="Ex. 30064"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Upload a Profile Picture</ng-template>
+      <button mat-button (click)="onClick()">
+        <mat-icon>file_upload</mat-icon>
+        Upload
+      </button>
+      <input
+        type="file"
+        #fileUpload
+        id="fileUpload"
+        name="fileUpload"
+        accept="image/*"
+        style="display:none;"
+      />
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

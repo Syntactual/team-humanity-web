@@ -1,16 +1,15 @@
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './pages/landing/header/header.component';
 import { MatDialogModule, MatDialogActions } from '@angular/material/dialog';
 import { SetupComponent } from './components/setup/setup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LandingComponent } from './pages/landing/landing.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +18,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CardComponent } from './shared/components/card/card.component';
-import { CreateNeedComponent } from './pages/create-need/create-need.component';
+import { CreateNeedComponent } from './components/create-need/create-need.component';
+import { CreateProfileComponent } from './components/create-profile/create-profile.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const appRoutes: Routes = [
   {
@@ -29,6 +32,10 @@ const appRoutes: Routes = [
   {
     path: 'create-need',
     component: CreateNeedComponent,
+  },
+  {
+    path: 'create-profile',
+    component: CreateProfileComponent,
   },
   {
     path: '',
@@ -43,9 +50,10 @@ const appRoutes: Routes = [
     LandingComponent,
     DashboardComponent,
     CardComponent,
-    HeaderComponent,
+    // HeaderComponent,
     SetupComponent,
     CreateNeedComponent,
+    CreateProfileComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -65,6 +73,10 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     FormsModule,
     MatDialogModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -73,10 +85,13 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-
     MatFormFieldModule,
     MatInputModule,
     MatBadgeModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressBarModule,
   ],
   entryComponents: [SetupComponent],
 })
