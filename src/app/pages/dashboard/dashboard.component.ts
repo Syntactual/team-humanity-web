@@ -3,6 +3,7 @@ import { UserGQL, User } from '../../../generated/graphql';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card } from 'src/app/models/card';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,8 @@ import { Card } from 'src/app/models/card';
 export class DashboardComponent implements OnInit {
   user$: Observable<User>;
   mockCards: Card[];
-  breakpoint = 4;
-  constructor(private userGQL: UserGQL) {
+  breakpoint: number;
+  constructor(private userGQL: UserGQL, public auth: AuthService) {
     this.mockCards = [
       {
         imageUrl:
