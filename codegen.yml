@@ -1,5 +1,6 @@
 overwrite: true
-schema: 'https://us-central1-teamhumanity-test.cloudfunctions.net/function-1'
+schema: 'http://localhost:4000'
+# // 'https://us-central1-teamhumanity-test.cloudfunctions.net/function-1'
 documents: 'src/**/*.graphql'
 generates:
   src/generated/graphql.ts:

@@ -1,0 +1,236 @@
+<mat-toolbar color="primary" role="heading">
+  <mat-toolbar-row class="toolbar">
+    <span class="heading">TEAM<b>HUMANITY</b></span>
+    <button class="button" mat-button mat-flat-button color="accent">+</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div id="name-row">
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="firstName"
+            name="firstName"
+            placeholder="First Name"
+          />
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="lastName"
+            name="lastName"
+            placeholder="Last Name"
+          />
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="emailFormControl"
+            name="email"
+            placeholder="Email Address"
+          />
+          <mat-error>
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            name="username"
+            placeholder="Username"
+          />
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            name="password"
+            placeholder="Password"
+          />
+          <mat-error>
+            Must have 6 characters with at least 1 number.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            [errorStateMatcher]="matcher"
+          />
+          <mat-error *ngIf="firstFormGroup.hasError('notSame')">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button class="btn" mat-raised-button color="primary" matStepperNext>
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <div>
+        <mat-form-field class="input">
+          <mat-label>Street Address</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="streetAddr"
+            placeholder="Ex. 1 Main Street"
+            required
+          />
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <mat-label>Apartment/Suite Number</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="apartSuit"
+            placeholder="Ex. Apartment 724"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="city"
+            placeholder="Ex. New York City"
+            required
+          />
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <mat-label>State</mat-label>
+          <select matNativeControl name="state" formControlName="state">
+            <option value="" selected></option>
+            <option *ngFor="let state of states.states" [value]="state.value">
+              {{ state.viewValue }}
+            </option>
+          </select>
+          <mat-error>
+            Required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="input">
+        <mat-label>Zip Code</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="zipCode"
+          placeholder="Ex. 30064"
+          required
+        />
+        <mat-error>
+          Please enter a valid zip code.
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button
+          class="btn"
+          mat-raised-button
+          color="primary"
+          matStepperPrevious
+        >
+          Back
+        </button>
+        <button class="btn" mat-raised-button color="primary" matStepperNext>
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Upload a Profile Picture</ng-template>
+      <button mat-button (click)="onClick()">
+        <mat-icon>file_upload</mat-icon>
+        Upload
+      </button>
+      <div>
+        <button
+          class="btn"
+          mat-raised-button
+          color="primary"
+          matStepperPrevious
+        >
+          Back
+        </button>
+        <button class="btn" mat-raised-button color="primary" matStepperNext>
+          Next
+        </button>
+      </div>
+      <input
+        type="file"
+        #fileUpload
+        id="fileUpload"
+        name="fileUpload"
+        accept="image/*"
+        style="display:none;"
+      />
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button class="btn" mat-raised-button color="primary" matStepperPrevious>
+        Back
+      </button>
+      <button
+        class="btn"
+        mat-raised-button
+        color="primary"
+        *ngIf="firstFormGroup.valid && secondFormGroup.valid"
+        (click)="stepper.reset()"
+      >
+        Submit
+      </button>
+      <button
+        class="btn"
+        mat-raised-button
+        *ngIf="firstFormGroup.invalid || secondFormGroup.invalid"
+        disabled
+      >
+        Submit
+      </button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

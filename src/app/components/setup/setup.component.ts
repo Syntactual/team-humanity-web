@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UserRegistrationData} from '../../models/UserRegistrationData';
 import {MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
+import { CreateProfileGQL } from 'src/generated/graphql';
 
 @Component({
   selector: 'app-setup',
@@ -23,6 +24,7 @@ export class SetupComponent {
 
   constructor(private dialogRef: MatDialogRef<SetupComponent>,
               private router: Router,
+              private createProfileGQL: CreateProfileGQL
   ) {
   }
 
