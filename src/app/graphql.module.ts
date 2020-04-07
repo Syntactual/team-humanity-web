@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const uri =
   // TODO: Put value in environment and pipeline when its up
-  'https://us-central1-teamhumanity-test.cloudfunctions.net/function-1/graphql'; // <-- add the URL of the GraphQL server here
+  'https://graphl-server-test-xi2pfdqxqa-ue.a.run.app/graphql'; // <-- add the URL of the GraphQL server here
 // 'http://localhost:4000/graphql';
 export function createApollo(httpLink: HttpLink) {
   return {

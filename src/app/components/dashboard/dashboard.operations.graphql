@@ -8,6 +8,9 @@ query user {
     address {
       streetAddress
     }
+    profilePicture{
+      fileName
+    }
   }
 }
 

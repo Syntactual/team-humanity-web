@@ -1,6 +1,7 @@
 overwrite: true
-schema: 'http://localhost:4000'
-# // 'https://us-central1-teamhumanity-test.cloudfunctions.net/function-1'
+schema: 'https://graphl-server-test-xi2pfdqxqa-ue.a.run.app/graphql'
+# 'http://localhost:4000'
+
 documents: 'src/**/*.graphql'
 generates:
   src/generated/graphql.ts:
