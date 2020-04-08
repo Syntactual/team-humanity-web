@@ -40,7 +40,7 @@
           <input
             matInput
             type="text"
-            formControlName="emailFormControl"
+            formControlName="email"
             name="email"
             placeholder="Email Address"
           />
@@ -78,7 +78,7 @@
           <input
             matInput
             type="text"
-            formControlName="apartSuit"
+            formControlName="aptSuit"
             placeholder="Ex. Apartment 724"
           />
         </mat-form-field>
@@ -99,7 +99,7 @@
         </mat-form-field>
         <mat-form-field class="input">
           <mat-label>State</mat-label>
-          <select matNativeControl name="state" formControlName="state">
+          <select matNativeControl name="state" formControlName="stateAbbr">
             <option value="" selected></option>
             <option *ngFor="let state of states.states" [value]="state.value">
               {{ state.viewValue }}
@@ -164,6 +164,7 @@
         id="fileUpload"
         name="fileUpload"
         accept="image/*"
+        (change)="onFileChange($event)"
         style="display:none;"
       />
     </form>
@@ -180,7 +181,7 @@
         mat-raised-button
         color="primary"
         *ngIf="firstFormGroup.valid && secondFormGroup.valid"
-        (click)="stepper.reset()"
+        (click)="onSubmit()"
       >
         Submit
       </button>

@@ -11,14 +11,12 @@ import { StatesComponent } from './states.component';
 })
 export class CreateProfileComponent implements OnInit {
   @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
-  files = [];
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
-  imgURL: string | ArrayBuffer;
 
   address: Address = {
     streetAddress: '',
@@ -42,13 +40,13 @@ export class CreateProfileComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      emailFormControl: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
     });
     this.secondFormGroup = this._formBuilder.group({
       streetAddr: ['', Validators.required],
-      apartSuit: [''],
+      aptSuit: [''],
       city: ['', Validators.required],
-      state: ['', Validators.required],
+      stateAbbr: ['', Validators.required],
       zipCode: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
     this.thirdFormGroup = this._formBuilder.group({
@@ -56,12 +54,32 @@ export class CreateProfileComponent implements OnInit {
     });
   }
 
+  onFileChange(event) {
+    this.user.picture = event.target.files[0];
+  }
+
+  onSubmit() {
+    this.user = {
+      ...this.user,
+      firstName: this.firstFormGroup.get('firstName').value,
+      lastName: this.firstFormGroup.get('lastName').value,
+      email: this.firstFormGroup.get('email').value,
+      address: {
+        streetAddress: this.secondFormGroup.get('streetAddr').value,
+        aptSuit: this.secondFormGroup.get('aptSuit').value,
+        city: this.secondFormGroup.get('city').value,
+        zipCode: this.secondFormGroup.get('zipCode').value,
+        stateAbbr: this.secondFormGroup.get('stateAbbr').value,
+      },
+    };
+
+    console.log('Submitting', this.user);
+
+    // Call our GQL submit function on this.user here...
+  }
+
   onClick() {
     const fileUpload = this.fileUpload.nativeElement;
-    fileUpload.onchange = () => {
-      // this.uploadFile();
-      fileUpload.click();
-    };
     fileUpload.click();
   }
 }
