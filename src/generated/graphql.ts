@@ -3,65 +3,65 @@ import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: string;
   String: string;
   Boolean: boolean;
   Int: number;
   Float: number;
   Upload: any;
-};
+}
 
 
 
-export type Address = {
+export interface Address {
    __typename?: 'Address';
   streetAddress: Scalars['String'];
   aptSuit?: Maybe<Scalars['String']>;
   city: Scalars['String'];
   zipCode: Scalars['Int'];
   stateAbbr: Scalars['String'];
-};
+}
 
-export type AddressInput = {
+export interface AddressInput {
   streetAddress: Scalars['String'];
   aptSuit?: Maybe<Scalars['String']>;
   city: Scalars['String'];
   zipCode: Scalars['Int'];
   stateAbbr?: Maybe<Scalars['String']>;
-};
+}
 
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
 }
 
-export type Mutation = {
+export interface Mutation {
    __typename?: 'Mutation';
   createProfile: User;
-};
+}
 
 
-export type MutationCreateProfileArgs = {
+export interface MutationCreateProfileArgs {
   user: UserInput;
-};
+}
 
-export type ProfilePicture = {
+export interface ProfilePicture {
    __typename?: 'ProfilePicture';
   fileName: Scalars['String'];
-};
+}
 
-export type ProfilePictureInput = {
+export interface ProfilePictureInput {
   fileName: Scalars['String'];
-};
+}
 
-export type Query = {
+export interface Query {
    __typename?: 'Query';
   user?: Maybe<User>;
-};
+}
 
 
-export type User = {
+export interface User {
    __typename?: 'User';
   id?: Maybe<Scalars['ID']>;
   firstName: Scalars['String'];
@@ -71,9 +71,9 @@ export type User = {
   email: Scalars['String'];
   address: Address;
   picture: ProfilePicture;
-};
+}
 
-export type UserInput = {
+export interface UserInput {
   id: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
@@ -82,11 +82,11 @@ export type UserInput = {
   email: Scalars['String'];
   profilePicture?: Maybe<ProfilePictureInput>;
   address: AddressInput;
-};
+}
 
-export type CreateProfileMutationVariables = {
+export interface CreateProfileMutationVariables {
   user: UserInput;
-};
+}
 
 
 export type CreateProfileMutation = (
@@ -104,7 +104,7 @@ export type CreateProfileMutation = (
   ) }
 );
 
-export type UserQueryVariables = {};
+export interface UserQueryVariables {}
 
 
 export type UserQuery = (
@@ -119,9 +119,9 @@ export type UserQuery = (
   )> }
 );
 
-export type CreateProfile2MutationVariables = {
+export interface CreateProfile2MutationVariables {
   user: UserInput;
-};
+}
 
 
 export type CreateProfile2Mutation = (
@@ -160,12 +160,12 @@ export const CreateProfileDocument = gql`
 }
     `;
 
-  @Injectable({
+@Injectable({
     providedIn: 'root'
   })
   export class CreateProfileGQL extends Apollo.Mutation<CreateProfileMutation, CreateProfileMutationVariables> {
     document = CreateProfileDocument;
-    
+
   }
 export const UserDocument = gql`
     query user {
@@ -182,12 +182,12 @@ export const UserDocument = gql`
 }
     `;
 
-  @Injectable({
+@Injectable({
     providedIn: 'root'
   })
   export class UserGQL extends Apollo.Query<UserQuery, UserQueryVariables> {
     document = UserDocument;
-    
+
   }
 export const CreateProfile2Document = gql`
     mutation createProfile2($user: UserInput!) {
@@ -210,15 +210,15 @@ export const CreateProfile2Document = gql`
 }
     `;
 
-  @Injectable({
+@Injectable({
     providedIn: 'root'
   })
   export class CreateProfile2GQL extends Apollo.Mutation<CreateProfile2Mutation, CreateProfile2MutationVariables> {
     document = CreateProfile2Document;
-    
+
   }
 
-      export interface IntrospectionResultData {
+export interface IntrospectionResultData {
         __schema: {
           types: {
             kind: string;
@@ -229,10 +229,10 @@ export const CreateProfile2Document = gql`
           }[];
         };
       }
-      const result: IntrospectionResultData = {
-  "__schema": {
-    "types": []
+const result: IntrospectionResultData = {
+  __schema: {
+    types: []
   }
 };
-      export default result;
-    
+export default result;
+
