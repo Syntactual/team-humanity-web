@@ -1,7 +1,7 @@
-export interface Card{
-    imageUrl?:string;
-    donationAmount?:number;
-    firstName:string;
-    lastName:string;
-    message:string;
+export interface Card {
+    imageUrl?: string;
+    donationAmount?: number;
+    firstName: string;
+    lastName: string;
+    message: string;
 }

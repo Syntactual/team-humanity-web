@@ -1,9 +1,10 @@
-mutation createProfile2($user: UserInput!) {
+mutation createProfile($user: UserInput!) {
   createProfile(user: $user) {
     id
     firstName
     lastName
     age
+    phone
     picture {
       fileName
     }

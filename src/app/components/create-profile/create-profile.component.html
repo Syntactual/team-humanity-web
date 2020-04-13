@@ -48,6 +48,19 @@
             Please enter a valid email address.
           </mat-error>
         </mat-form-field>
+        <mat-form-field class="input">
+          <input
+            matInput
+            type="text"
+            formControlName="phone"
+            name="phone"
+            placeholder="Phone Number"
+          />
+          <mat-hint align="start"><strong>*Optional</strong> </mat-hint>
+          <mat-error>
+            Please enter a valid phone number.
+          </mat-error>
+        </mat-form-field>
       </div>
       <div>
         <button class="btn" mat-raised-button color="primary" matStepperNext>
@@ -141,10 +154,24 @@
   <mat-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>Upload a Profile Picture</ng-template>
-      <button mat-button (click)="onClick()">
-        <mat-icon>file_upload</mat-icon>
-        Upload
-      </button>
+      <div>
+        <img id="imgPreview" #imgPreview name="imgPreview" class="imgPreview" />
+      </div>
+      <input
+        type="file"
+        #fileUpload
+        id="fileUpload"
+        name="fileUpload"
+        accept="image/*"
+        (change)="onFileChange($event)"
+        style="display:none;"
+      />
+      <div class="buttonContainer">
+        <button mat-button (click)="onClick()">
+          <mat-icon>file_upload</mat-icon>
+          Upload
+        </button>
+      </div>
       <div>
         <button
           class="btn"
@@ -158,15 +185,6 @@
           Next
         </button>
       </div>
-      <input
-        type="file"
-        #fileUpload
-        id="fileUpload"
-        name="fileUpload"
-        accept="image/*"
-        (change)="onFileChange($event)"
-        style="display:none;"
-      />
     </form>
   </mat-step>
   <mat-step>
@@ -180,7 +198,7 @@
         class="btn"
         mat-raised-button
         color="primary"
-        *ngIf="firstFormGroup.valid && secondFormGroup.valid"
+        *ngIf="firstFormGroup.valid && secondFormGroup.valid && user.picture"
         (click)="onSubmit()"
       >
         Submit
@@ -188,7 +206,9 @@
       <button
         class="btn"
         mat-raised-button
-        *ngIf="firstFormGroup.invalid || secondFormGroup.invalid"
+        *ngIf="
+          firstFormGroup.invalid || secondFormGroup.invalid || !user.picture
+        "
         disabled
       >
         Submit

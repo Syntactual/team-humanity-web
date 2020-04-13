@@ -41,13 +41,9 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -97,6 +93,18 @@
             "deprecationReason": null
           },
           {
+            "name": "phone",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "email",
             "description": "",
             "args": [],
@@ -113,31 +121,23 @@
             "deprecationReason": null
           },
           {
-            "name": "about",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "address",
             "description": "",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Address",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Address",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "profilePicture",
+            "name": "picture",
             "description": "",
             "args": [],
             "type": {
@@ -222,7 +222,7 @@
             "deprecationReason": null
           },
           {
-            "name": "state",
+            "name": "city",
             "description": "",
             "args": [],
             "type": {
@@ -258,9 +258,13 @@
             "description": "",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -389,26 +393,22 @@
             "defaultValue": null
           },
           {
+            "name": "phone",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "age",
             "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "about",
-            "description": "",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null
           },
@@ -430,13 +430,9 @@
             "name": "profilePicture",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "ProfilePictureInput",
-                "ofType": null
-              }
+              "kind": "INPUT_OBJECT",
+              "name": "ProfilePictureInput",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -515,7 +511,7 @@
             "defaultValue": null
           },
           {
-            "name": "state",
+            "name": "city",
             "description": "",
             "type": {
               "kind": "NON_NULL",

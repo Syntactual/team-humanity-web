@@ -55,7 +55,7 @@ export class SetupComponent {
       this.dialogRef.close(this.user);
       this.router.navigate(['/dashboard']);
     } else {
-      alert("passwords don't match");
+      alert('passwords don\'t match');
     }
   }
 }

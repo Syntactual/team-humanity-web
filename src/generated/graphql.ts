@@ -12,39 +12,42 @@ export type Scalars = {
   Upload: any;
 };
 
+
+
 export type Address = {
-  __typename?: 'Address';
+   __typename?: 'Address';
   streetAddress: Scalars['String'];
   aptSuit?: Maybe<Scalars['String']>;
-  state: Scalars['String'];
+  city: Scalars['String'];
   zipCode: Scalars['Int'];
-  stateAbbr?: Maybe<Scalars['String']>;
+  stateAbbr: Scalars['String'];
 };
 
 export type AddressInput = {
   streetAddress: Scalars['String'];
   aptSuit?: Maybe<Scalars['String']>;
-  state: Scalars['String'];
+  city: Scalars['String'];
   zipCode: Scalars['Int'];
   stateAbbr?: Maybe<Scalars['String']>;
 };
 
 export enum CacheControlScope {
   Public = 'PUBLIC',
-  Private = 'PRIVATE',
+  Private = 'PRIVATE'
 }
 
 export type Mutation = {
-  __typename?: 'Mutation';
+   __typename?: 'Mutation';
   createProfile: User;
 };
+
 
 export type MutationCreateProfileArgs = {
   user: UserInput;
 };
 
 export type ProfilePicture = {
-  __typename?: 'ProfilePicture';
+   __typename?: 'ProfilePicture';
   fileName: Scalars['String'];
 };
 
@@ -53,137 +56,183 @@ export type ProfilePictureInput = {
 };
 
 export type Query = {
-  __typename?: 'Query';
+   __typename?: 'Query';
   user?: Maybe<User>;
 };
 
+
 export type User = {
-  __typename?: 'User';
-  id: Scalars['ID'];
+   __typename?: 'User';
+  id?: Maybe<Scalars['ID']>;
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   age?: Maybe<Scalars['Int']>;
+  phone?: Maybe<Scalars['String']>;
   email: Scalars['String'];
-  about?: Maybe<Scalars['String']>;
-  address?: Maybe<Address>;
-  profilePicture?: Maybe<ProfilePicture>;
+  address: Address;
+  picture: ProfilePicture;
 };
 
 export type UserInput = {
   id: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  phone?: Maybe<Scalars['String']>;
   age?: Maybe<Scalars['Int']>;
-  about: Scalars['String'];
   email: Scalars['String'];
-  profilePicture: ProfilePictureInput;
+  profilePicture?: Maybe<ProfilePictureInput>;
   address: AddressInput;
-};
-
-export type UserQueryVariables = {};
-
-export type UserQuery = { __typename?: 'Query' } & {
-  user?: Maybe<
-    { __typename?: 'User' } & Pick<
-      User,
-      'id' | 'firstName' | 'lastName' | 'age' | 'email'
-    > & {
-        address?: Maybe<
-          { __typename?: 'Address' } & Pick<Address, 'streetAddress'>
-        >;
-      }
-  >;
 };
 
 export type CreateProfileMutationVariables = {
   user: UserInput;
 };
 
-export type CreateProfileMutation = { __typename?: 'Mutation' } & {
-  createProfile: { __typename?: 'User' } & Pick<
-    User,
-    'id' | 'firstName' | 'lastName' | 'age' | 'about'
-  > & {
-      profilePicture: { __typename?: 'ProfilePicture' } & Pick<
-        ProfilePicture,
-        'fileName'
-      >;
-      address?: Maybe<
-        { __typename?: 'Address' } & Pick<
-          Address,
-          'streetAddress' | 'aptSuit' | 'state' | 'zipCode' | 'stateAbbr'
-        >
-      >;
-    };
+
+export type CreateProfileMutation = (
+  { __typename?: 'Mutation' }
+  & { createProfile: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'age'>
+    & { picture: (
+      { __typename?: 'ProfilePicture' }
+      & Pick<ProfilePicture, 'fileName'>
+    ), address: (
+      { __typename?: 'Address' }
+      & Pick<Address, 'streetAddress' | 'aptSuit' | 'city' | 'zipCode' | 'stateAbbr'>
+    ) }
+  ) }
+);
+
+export type UserQueryVariables = {};
+
+
+export type UserQuery = (
+  { __typename?: 'Query' }
+  & { user?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'age' | 'email'>
+    & { address: (
+      { __typename?: 'Address' }
+      & Pick<Address, 'streetAddress'>
+    ) }
+  )> }
+);
+
+export type CreateProfile2MutationVariables = {
+  user: UserInput;
 };
 
-export const UserDocument = gql`
-  query user {
-    user {
-      id
-      firstName
-      lastName
-      age
-      email
-      address {
-        streetAddress
-      }
-    }
-  }
-`;
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UserGQL extends Apollo.Query<UserQuery, UserQueryVariables> {
-  document = UserDocument;
-}
+export type CreateProfile2Mutation = (
+  { __typename?: 'Mutation' }
+  & { createProfile: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'age'>
+    & { picture: (
+      { __typename?: 'ProfilePicture' }
+      & Pick<ProfilePicture, 'fileName'>
+    ), address: (
+      { __typename?: 'Address' }
+      & Pick<Address, 'streetAddress' | 'aptSuit' | 'city' | 'zipCode' | 'stateAbbr'>
+    ) }
+  ) }
+);
+
 export const CreateProfileDocument = gql`
-  mutation createProfile($user: UserInput!) {
-    createProfile(user: $user) {
-      id
-      firstName
-      lastName
-      age
-      about
-      profilePicture {
-        fileName
-      }
-      address {
-        streetAddress
-        aptSuit
-        state
-        zipCode
-        stateAbbr
-      }
+    mutation createProfile($user: UserInput!) {
+  createProfile(user: $user) {
+    id
+    firstName
+    lastName
+    age
+    picture {
+      fileName
+    }
+    address {
+      streetAddress
+      aptSuit
+      city
+      zipCode
+      stateAbbr
     }
   }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class CreateProfileGQL extends Apollo.Mutation<
-  CreateProfileMutation,
-  CreateProfileMutationVariables
-> {
-  document = CreateProfileDocument;
 }
+    `;
 
-export interface IntrospectionResultData {
-  __schema: {
-    types: {
-      kind: string;
-      name: string;
-      possibleTypes: {
-        name: string;
-      }[];
-    }[];
-  };
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateProfileGQL extends Apollo.Mutation<CreateProfileMutation, CreateProfileMutationVariables> {
+    document = CreateProfileDocument;
+    
+  }
+export const UserDocument = gql`
+    query user {
+  user {
+    id
+    firstName
+    lastName
+    age
+    email
+    address {
+      streetAddress
+    }
+  }
 }
-const result: IntrospectionResultData = {
-  __schema: {
-    types: [],
-  },
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserGQL extends Apollo.Query<UserQuery, UserQueryVariables> {
+    document = UserDocument;
+    
+  }
+export const CreateProfile2Document = gql`
+    mutation createProfile2($user: UserInput!) {
+  createProfile(user: $user) {
+    id
+    firstName
+    lastName
+    age
+    picture {
+      fileName
+    }
+    address {
+      streetAddress
+      aptSuit
+      city
+      zipCode
+      stateAbbr
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateProfile2GQL extends Apollo.Mutation<CreateProfile2Mutation, CreateProfile2MutationVariables> {
+    document = CreateProfile2Document;
+    
+  }
+
+      export interface IntrospectionResultData {
+        __schema: {
+          types: {
+            kind: string;
+            name: string;
+            possibleTypes: {
+              name: string;
+            }[];
+          }[];
+        };
+      }
+      const result: IntrospectionResultData = {
+  "__schema": {
+    "types": []
+  }
 };
-export default result;
+      export default result;
+    

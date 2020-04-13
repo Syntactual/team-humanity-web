@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   user$: Observable<User>;
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
         firstName: 'Mark',
         lastName: 'Roger',
         message:
-          'I manage a coffee shop and we had to close temporarily. I don’t know how I’m going to cover my rent.'
+          'I manage a coffee shop and we had to close temporarily. I don’t know how I’m going to cover my rent.',
       },
       {
         imageUrl:
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
         firstName: 'Sara',
         lastName: 'S',
         message:
-          'I’m a server and lost my only source of income. Need money for groceries. I am always will to help.'
+          'I’m a server and lost my only source of income. Need money for groceries. I am always will to help.',
       },
       {
         imageUrl:
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
         firstName: 'Aiden',
         lastName: 'M',
         message:
-          'I’m a singer-songwriter who gigs most nights. All of my shows got cancelled when all the bars shut down.'
+          'I’m a singer-songwriter who gigs most nights. All of my shows got cancelled when all the bars shut down.',
       },
       {
         imageUrl:
@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
         firstName: 'Marcus',
         lastName: 'B',
         message:
-          'I’m a professional wedding photographer and all of my clients have had to reschedule their upcoming weddings.'
+          'I’m a professional wedding photographer and all of my clients have had to reschedule their upcoming weddings.',
       },
       {
         imageUrl:
@@ -59,8 +59,8 @@ export class DashboardComponent implements OnInit {
         firstName: 'Rachel',
         lastName: 'H',
         message:
-          'The local theater group I work for was forced to close its door temporarily. I don’t know how I’m going to pay bills.'
-      }
+          'The local theater group I work for was forced to close its door temporarily. I don’t know how I’m going to pay bills.',
+      },
     ];
   }
 
@@ -87,9 +87,9 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.manageResponsiveness(window.innerWidth);
-    this.user$ = this.userGQL
-      .watch()
-      .valueChanges.pipe(map(({ data }) => data.user));
+    // this.user$ = this.userGQL
+    //   .watch()
+    //   .valueChanges.pipe(map(({ data }) => data.user));
   }
 
   onResize(event) {

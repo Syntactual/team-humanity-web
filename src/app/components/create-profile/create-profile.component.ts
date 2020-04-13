@@ -11,12 +11,14 @@ import { StatesComponent } from './states.component';
 })
 export class CreateProfileComponent implements OnInit {
   @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
+  @ViewChild('imgPreview', { static: false }) imgPreview: ElementRef;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  imageURL: string;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   address: Address = {
     streetAddress: '',
@@ -31,31 +33,41 @@ export class CreateProfileComponent implements OnInit {
     lastName: '',
     email: '',
     address: this.address,
+    phone: '',
     picture: null,
   } as UserRegistrationData;
 
   states = new StatesComponent();
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
+    this.firstFormGroup = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.pattern(/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/)]],
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.secondFormGroup = this.formBuilder.group({
       streetAddr: ['', Validators.required],
       aptSuit: [''],
       city: ['', Validators.required],
       stateAbbr: ['', Validators.required],
       zipCode: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
+    this.thirdFormGroup = this.formBuilder.group({
+      profilePicture: ['', Validators.required],
     });
   }
 
   onFileChange(event) {
     this.user.picture = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imgPreview = this.imgPreview.nativeElement;
+      imgPreview.src = reader.result;
+    };
+    reader.readAsDataURL(this.user.picture);
+    console.log(this.imageURL);
+    console.log(this.user.picture);
   }
 
   onSubmit() {
@@ -64,6 +76,7 @@ export class CreateProfileComponent implements OnInit {
       firstName: this.firstFormGroup.get('firstName').value,
       lastName: this.firstFormGroup.get('lastName').value,
       email: this.firstFormGroup.get('email').value,
+      phone: this.firstFormGroup.get('phone').value,
       address: {
         streetAddress: this.secondFormGroup.get('streetAddr').value,
         aptSuit: this.secondFormGroup.get('aptSuit').value,
