@@ -1,16 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Team Humanity</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body class="humanitytheme">
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Team Humanity</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://static.vouched.id/widget/vouched.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var vouched = Vouched({
+          appId: '!vs1un0Jtqy.IZ7-M.vwh3v7OccN@R',
+          types: ['id-verification'],
+
+          // optional - Token used to restart a session.
+          token: '<TOKEN>',
+
+          // optional - default to false - Provides the ability to maintain the same session
+          // across multiple devices using the token retrieved from onInit.
+          crossDevice: false,
+
+          // optional - defaults to true - Show the upload first instead of the camera
+          showUploadFirst: true,
+          // optional - defaults to camera - Specify how user can submit their selfie
+          face: 'camera' | 'upload' | 'both',
+          // optional - defaults to both -  Specify how user can submit their id
+          id: 'camera' | 'upload' | 'both',
+          // optional - defaults to straight - Specify how Vouched should check for face liveness
+          liveness: 'orientation' | 'straight' | 'mouth',
+          // optional - Arbitrary properties to add to the job, i.e. application ids
+          properties: [{ name: 'internal_id', value: '23232334' }],
+          // optional
+          content: {
+            // Successful submission
+            success: 'success',
+            // The user disputes the results
+            review:
+              'Thank you for updating your information. We will review and get back to you.',
+            // Verification passed
+            verifyPass:
+              'Everything looks good to us. Verify your information and click next.',
+            // Verification failed
+            verifyFail:
+              "We couldn't verify you. If you disagree, update your information and click next.",
+          },
+          /////////////////////////
+          // optional verification properties
+          verification: {
+            // show the review results page
+            // defaults to false if verification fields are included
+            showResults: true,
+
+            // If a session is continued from a token, it is not required to reset the
+            // user's information.
+            // firstName: 'John',
+            // lastName: 'Bao',
+            // birthDate: '09/11/1995',
+          },
+          /////////////////////////
+          // end of optional verification properties
+
+          // Called when a job is completed
+          callbackURL: 'https://www.google.com',
+
+          theme: {
+            baseColor: '#FD814B',
+            bgColor: '#000',
+          },
+          onSubmit: ({ stage, attempts, job }) => {
+            console.log('submit', { stage, attempts, job });
+          },
+          onCamera: ({ hasCamera, hasPermission }) => {
+            console.log('onCamera', { hasCamera, hasPermission });
+          },
+          onInit: ({ token }) => {
+            // if crossDevice is true, a web token is created during initialization for
+            // session handoffs to other devices
+            console.log('initialization');
+          },
+          onDone: job => {
+            // notify a server process that a job is complete
+            // query the job with the token
+            fetch(`/api/idv?job_token=${job.token}`);
+          },
+        });
+        vouched.mount('#vouched-element');
+      })();
+    </script>
+  </head>
+  <body class="humanitytheme">
+    <app-root></app-root>
+  </body>
 </html>
