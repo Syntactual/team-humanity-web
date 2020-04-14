@@ -13,12 +13,14 @@
 }
 
 // This is just to make the dashboard 100%.
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
+  background-color: #ededed;
 }
 
-.mat-dialog-container{
+.mat-dialog-container {
   padding: 0 !important;
   border-radius: unset !important;
 }

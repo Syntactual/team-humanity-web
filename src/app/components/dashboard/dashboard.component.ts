@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card } from 'src/app/models/card';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

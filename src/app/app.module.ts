@@ -27,6 +27,8 @@ import { CreateProfileComponent } from './components/create-profile/create-profi
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { VouchedIdComponent } from './components/vouched-id/vouched-id.component';
+import { HeaderComponent } from './components/header/header.component';
 
 const appRoutes: Routes = [
   {
@@ -42,6 +44,10 @@ const appRoutes: Routes = [
     component: CreateProfileComponent,
   },
   {
+    path: 'vouch',
+    component: VouchedIdComponent,
+  },
+  {
     path: '',
     component: LandingComponent,
     pathMatch: 'full',
@@ -54,10 +60,11 @@ const appRoutes: Routes = [
     LandingComponent,
     DashboardComponent,
     CardComponent,
-    // HeaderComponent,
+    HeaderComponent,
     SetupComponent,
     CreateNeedComponent,
     CreateProfileComponent,
+    VouchedIdComponent,
   ],
   imports: [
     RouterModule.forRoot(
