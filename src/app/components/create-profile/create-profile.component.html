@@ -1,10 +1,4 @@
-<mat-toolbar color="primary" role="heading">
-  <mat-toolbar-row class="toolbar">
-    <span class="heading">TEAM<b>HUMANITY</b></span>
-    <button class="button" mat-button mat-flat-button color="accent">+</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-
+<app-header></app-header>
 <mat-vertical-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
